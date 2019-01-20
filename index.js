@@ -1,3 +1,4 @@
+const brain = require('brain.js');
 const net = new brain.NeuralNetwork({ hiddenLayers: [3] });
 
 const trainingData = [
@@ -7,6 +8,13 @@ const trainingData = [
 	{ input: [1, 1], output: [0] },
 ];
 
-net.train(trainingData);
+net.train(trainingData, {
+	log: error => console.log(error),
+	logPeriod: 100,
+	// iterations: 1000,
+});
 
 console.log(net.run([0, 0]));
+console.log(net.run([0, 1]));
+console.log(net.run([1, 0]));
+console.log(net.run([1, 1]));

@@ -1,0 +1,16 @@
+{
+	"name": "neuralnetworks",
+	"version": "1.0.0",
+	"description": "Project created for purposes of learning machine learning in JavaScript.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"brain.js": "^1.6.1"
+	}
+}
