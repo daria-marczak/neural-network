@@ -43,3 +43,36 @@ function restaurantForDay(dayOfWeek) {
 }
 
 console.log(restaurantForDay('Wednesday'));
+
+// Flip around
+const reversedTrainingData = [];
+
+for (let restaurantName in restaurants) {
+	const dayOfWeek = restaurants[restaurantName];
+	reversedTrainingData.push({
+		input: { [restaurantName]: 1 },
+		output: { [dayOfWeek]: 1 },
+	});
+}
+
+const reversedNet = new brain.NeuralNetwork({ hiddenLayers: [3] });
+const reversedStats = reversedNet.train(reversedTrainingData);
+
+console.log(reversedStats);
+
+function whichDayRestaurant(restaurantName) {
+	const result = reversedNet.run({ [restaurantName]: 1 });
+	let highestValue = 0;
+	let highestDay = '';
+
+	for (let day in result) {
+		if (result[day] > highestValue) {
+			highestValue = result[day];
+			highestDay = day;
+		}
+	}
+
+	return `You can eat at ${restaurantName} on ${highestDay}`;
+}
+
+console.log(whichDayRestaurant('Fun Day Inn'));
